@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>310737698076-2a74j6a5ibr7gu6omo4ih86g61n926j1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.310737698076-2a74j6a5ibr7gu6omo4ih86g61n926j1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBzQYwTO41s_Py1zn52YpiHFhyYzuWUNn8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>310737698076</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>jp.ne.sakura.tatsumi44.Chart-Sample</string>
+	<key>PROJECT_ID</key>
+	<string>chartapp-a9d58</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chartapp-a9d58.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:310737698076:ios:3674d29c108512f6</string>
+	<key>DATABASE_URL</key>
+	<string>https://chartapp-a9d58.firebaseio.com</string>
+</dict>
+</plist>
