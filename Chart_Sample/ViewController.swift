@@ -14,10 +14,13 @@ class ViewController: DemoBaseViewController {
     
     @IBOutlet var chartView: LineChartView!
     
-    let monthArray = ["1月","2","3","4","5","6","7","8","9","10","11","12"]
-    let apple1 = [100,110,120,130,140,150,160,170,180,190,200,150,120]
-    let apple2 = [110,130,160,200,160,120,160,110,120,140,130,180,110]
-    let apple3 = [120,120,180,110,180,100,160,130,140,110,150,130,190]
+    let months = ["Jan", "Feb", "Mar",
+                  "Apr", "May", "Jun",
+                  "Jul", "Aug", "Sep",
+                  "Oct", "Nov", "Dec"]
+    let apple1 = [100,110,120,130,140,150,160,170,180,190,200,150]
+    let apple2 = [110,130,160,200,160,120,160,110,120,140,130,180]
+    let apple3 = [120,120,180,110,180,100,160,130,140,110,150,130]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.options = [.toggleValues,
@@ -55,8 +58,12 @@ class ViewController: DemoBaseViewController {
         
         //上の文字
         let xAxis = chartView.xAxis
+        xAxis.labelPosition = .bottom
+        xAxis.labelCount = months.count - 1
         xAxis.labelFont = .systemFont(ofSize: 11)
         xAxis.labelTextColor = .orange
+        //xAxisの文字をいじるためにはこれが必要
+        xAxis.valueFormatter = self
         xAxis.drawAxisLineEnabled = false
         
         //グラフの左
@@ -77,7 +84,7 @@ class ViewController: DemoBaseViewController {
         //アニメーションの速度
         chartView.animate(xAxisDuration: 2.5)
         
-         self.setDataCount(xValArr: monthArray, y1ValArr: apple1, y2ValArr: apple2, y3ValArr: apple3)
+         self.setDataCount(xValArr: months, y1ValArr: apple1, y2ValArr: apple2, y3ValArr: apple3)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -107,24 +114,8 @@ class ViewController: DemoBaseViewController {
             let dataEntry = ChartDataEntry(x: Double(i), y: Double(y3ValArr[i]))
             yVals3.append(dataEntry) //(ChartDataEntry(x: Double(i), y: dollars1[i]))
         }
-//        let yVals1 = (0..<count).map { (i) -> ChartDataEntry in
-//            let mult = range / 2
-//            let val = Double(arc4random_uniform(mult) + 50)
-//            print(val)
-//            return ChartDataEntry(x: Double(i), y: val)
-//        }
-//        let yVals2 = (0..<count).map { (i) -> ChartDataEntry in
-//            let val = Double(arc4random_uniform(range) + 450)
-//            print(val)
-//            return ChartDataEntry(x: Double(i), y: val)
-//        }
-//        let yVals3 = (0..<count).map { (i) -> ChartDataEntry in
-//            let val = Double(arc4random_uniform(range) + 500)
-//            print(val)
-//            return ChartDataEntry(x: Double(i), y: val)
-//        }
-        
-        let set1 = LineChartDataSet(values: yVals1, label: "DataSet 1")
+
+        let set1 = LineChartDataSet(values: yVals1, label: "支持政党推移")
         set1.axisDependency = .left
         set1.setColor(UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1))
         set1.setCircleColor(.white)
@@ -174,12 +165,10 @@ class ViewController: DemoBaseViewController {
     
 }
 
-public class BarChartFormatter: NSObject, IAxisValueFormatter{
-    let months: [String]! = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    
-    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        // 0 -> Jan, 1 -> Feb...
-        return months[Int(value)]
+extension ViewController: IAxisValueFormatter {
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return months[Int(value) % months.count]
     }
 }
+
 
