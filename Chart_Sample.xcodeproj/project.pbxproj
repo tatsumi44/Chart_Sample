@@ -14,6 +14,7 @@
 		B90026EA209B337800C2FE5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B90026E8209B337800C2FE5C /* LaunchScreen.storyboard */; };
 		B90026F2209B34D300C2FE5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B90026F1209B34D300C2FE5C /* GoogleService-Info.plist */; };
 		B90026F9209B425100C2FE5C /* DemoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90026F8209B425100C2FE5C /* DemoBaseViewController.swift */; };
+		B90026FB209C029400C2FE5C /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90026FA209C029400C2FE5C /* PieChartViewController.swift */; };
 		BA362C82FABC7E4ED7E381A7 /* Pods_Chart_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167DA0612C184872627B8439 /* Pods_Chart_Sample.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		B90026EB209B337800C2FE5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B90026F1209B34D300C2FE5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B90026F8209B425100C2FE5C /* DemoBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoBaseViewController.swift; sourceTree = "<group>"; };
+		B90026FA209C029400C2FE5C /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				B90026DF209B337400C2FE5C /* AppDelegate.swift */,
 				B90026E1209B337400C2FE5C /* ViewController.swift */,
 				B90026F8209B425100C2FE5C /* DemoBaseViewController.swift */,
+				B90026FA209C029400C2FE5C /* PieChartViewController.swift */,
 				B90026E3209B337400C2FE5C /* Main.storyboard */,
 				B90026E6209B337800C2FE5C /* Assets.xcassets */,
 				B90026E8209B337800C2FE5C /* LaunchScreen.storyboard */,
@@ -243,6 +246,7 @@
 			files = (
 				B90026F9209B425100C2FE5C /* DemoBaseViewController.swift in Sources */,
 				B90026E2209B337400C2FE5C /* ViewController.swift in Sources */,
+				B90026FB209C029400C2FE5C /* PieChartViewController.swift in Sources */,
 				B90026E0209B337400C2FE5C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
