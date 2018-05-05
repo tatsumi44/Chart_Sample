@@ -8,6 +8,7 @@ target 'Chart_Sample' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
+  pod 'Realm'
 
   # Pods for Chart_Sample
 

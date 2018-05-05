@@ -11,12 +11,19 @@ import Charts
 class PieChartViewController: DemoBaseViewController {
     
     @IBOutlet weak var chartView: PieChartView!
-    let numAraay = [41,23,34,44,5]
+    let a: Double = 41
+    let b: Double = 23
+    let c: Double = 34
+    let d: Double = 44
+    let e: Double = 5
+    var numAraay = [Double]()
     let nameArray = ["自民党","民主党","共産党","公明党","社民党"]
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let sum = a + b + c + d + e
+        numAraay = [(a/sum)*100,(b/sum)*100,(c/sum)*100,(d/sum)*100,(e/sum)*100]
         
         self.options = [.toggleValues,
                         .toggleXValues,
@@ -59,13 +66,15 @@ class PieChartViewController: DemoBaseViewController {
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
-        let entries = (0..<count).map { (i) -> PieChartDataEntry in
-            // IMPORTANT: In a PieChart, no values (Entry) should have the same xIndex (even if from different DataSets), since no values can be drawn above each other.
-            return PieChartDataEntry(value: Double(arc4random_uniform(range) + range / 5),
-                                     label: nameArray[i])
+
+        var array : [PieChartDataEntry] = [PieChartDataEntry]()
+        for i in 0 ..< numAraay.count {
+            let entries = PieChartDataEntry(value: Double(numAraay[i]) ,
+                                            label: nameArray[i])
+            array.append(entries)
         }
         
-        let set = PieChartDataSet(values: entries, label: "投票結果")
+        let set = PieChartDataSet(values: array, label: "投票結果")
         set.drawIconsEnabled = false
         set.sliceSpace = 2
         
