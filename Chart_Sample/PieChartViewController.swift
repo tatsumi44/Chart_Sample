@@ -8,20 +8,24 @@
 
 import UIKit
 import Charts
+import Firebase
 class PieChartViewController: DemoBaseViewController {
     
     @IBOutlet weak var chartView: PieChartView!
+    var db : Firestore!
     let a: Double = 41
     let b: Double = 23
     let c: Double = 34
     let d: Double = 44
     let e: Double = 5
     var numAraay = [Double]()
+    var date : Date!
     let nameArray = ["自民党","民主党","共産党","公明党","社民党"]
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let sum = a + b + c + d + e
         numAraay = [(a/sum)*100,(b/sum)*100,(c/sum)*100,(d/sum)*100,(e/sum)*100]
         
@@ -51,9 +55,9 @@ class PieChartViewController: DemoBaseViewController {
         l.yOffset = 0
         
         chartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
-        
         setDataCount(5, range: 100)
-
+        
+        
         // Do any additional setup after loading the view.
     }
     override func updateChartData() {
@@ -62,11 +66,11 @@ class PieChartViewController: DemoBaseViewController {
             return
         }
         
-//        self.setDataCount(Int(sliderX.value), range: UInt32(sliderY.value))
+        //        self.setDataCount(Int(sliderX.value), range: UInt32(sliderY.value))
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
-
+        
         var array : [PieChartDataEntry] = [PieChartDataEntry]()
         for i in 0 ..< numAraay.count {
             let entries = PieChartDataEntry(value: Double(numAraay[i]) ,
@@ -101,9 +105,56 @@ class PieChartViewController: DemoBaseViewController {
         chartView.data = data
         chartView.highlightValues(nil)
     }
+    
+    @IBAction func push(_ sender: UIButton) {
+        db = Firestore.firestore()
+        date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd"
+        let sDate = format.string(from: date)
+        print(sDate)
+        
+        db.collection("election").document(sDate).getDocument(completion: { (snap, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }else{
+                print("へいへい")
+                if let data = snap?.data(){
+                    switch sender.tag {
+                    case 1:
+                        self.db.collection("election").document(sDate).updateData(["自民党" : self.a + 1])
+                    case 2:
+                        self.db.collection("election").document(sDate).updateData(["民主党" : self.b + 1])
+                    case 3:
+                        self.db.collection("election").document(sDate).updateData(["公明党" : self.c + 1])
+                    case 4:
+                        self.db.collection("election").document(sDate).updateData(["共産党" : self.d + 1])
+                    default:
+                        return
+                    }
+                }else{
+                    switch sender.tag {
+                    case 1:
+                        self.db.collection("election").document(sDate).setData(["自民党" : self.a + 1])
+                    case 2:
+                        self.db.collection("election").document(sDate).setData(["民主党" : self.b + 1])
+                    case 3:
+                        self.db.collection("election").document(sDate).setData(["公明党" : self.c + 1])
+                    case 4:
+                        self.db.collection("election").document(sDate).setData(["共産党" : self.d + 1])
+                    default:
+                        return
+                    }
 
+                }
+                
+            }
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }
