@@ -13,18 +13,44 @@ class PieChartViewController: DemoBaseViewController {
     
     @IBOutlet weak var chartView: PieChartView!
     var db : Firestore!
-    let a: Double = 41
-    let b: Double = 23
-    let c: Double = 34
-    let d: Double = 44
-    let e: Double = 5
+    var a: Double!
+    let b: Double!
+    let c: Double!
+    let d: Double!
+    let e: Double!
     var numAraay = [Double]()
     var date : Date!
     let nameArray = ["自民党","民主党","共産党","公明党","社民党"]
+    var sDate: String!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd"
+        sDate = format.string(from: date)
+        print(sDate)
+         db = Firestore.firestore()
+        db.collection("election").document(sDate).getDocument { (snap, error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }else{
+                if let data = snap?.data(){
+                    a = data["自民党"] as! Double
+                    b = data["民主党"] as! Double
+                    c = data["公明党"] as! Double
+                    d = data["共産党"] as! Double
+                    e = data["社民党"] as! Double
+                }else{
+                    a = 1
+                    b = 1
+                    c = 1
+                    d = 1
+                    e = 1
+                }
+            }
+        }
         
         let sum = a + b + c + d + e
         numAraay = [(a/sum)*100,(b/sum)*100,(c/sum)*100,(d/sum)*100,(e/sum)*100]
@@ -108,12 +134,6 @@ class PieChartViewController: DemoBaseViewController {
     
     @IBAction func push(_ sender: UIButton) {
         db = Firestore.firestore()
-        date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "yyyy-MM-dd"
-        let sDate = format.string(from: date)
-        print(sDate)
-        
         db.collection("election").document(sDate).getDocument(completion: { (snap, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -122,26 +142,31 @@ class PieChartViewController: DemoBaseViewController {
                 if let data = snap?.data(){
                     switch sender.tag {
                     case 1:
-                        self.db.collection("election").document(sDate).updateData(["自民党" : self.a + 1])
+                        self.db.collection("election").document(self.sDate).updateData(["自民党" : self.a + 1])
                     case 2:
-                        self.db.collection("election").document(sDate).updateData(["民主党" : self.b + 1])
+                        self.db.collection("election").document(self.sDate).updateData(["民主党" : self.b + 1])
                     case 3:
-                        self.db.collection("election").document(sDate).updateData(["公明党" : self.c + 1])
+                        self.db.collection("election").document(self.sDate).updateData(["公明党" : self.c + 1])
                     case 4:
-                        self.db.collection("election").document(sDate).updateData(["共産党" : self.d + 1])
+                        self.db.collection("election").document(self.sDate).updateData(["共産党" : self.d + 1])
+                    case 5:
+                        self.db.collection("election").document(self.sDate).updateData(["社民党" : self.e + 1])
                     default:
                         return
                     }
                 }else{
                     switch sender.tag {
                     case 1:
-                        self.db.collection("election").document(sDate).setData(["自民党" : self.a + 1])
+                        self.db.collection("election").document(self.sDate).setData(["自民党" : self.a + 1])
                     case 2:
-                        self.db.collection("election").document(sDate).setData(["民主党" : self.b + 1])
+                        self.db.collection("election").document(self.sDate).setData(["民主党" : self.b + 1])
                     case 3:
-                        self.db.collection("election").document(sDate).setData(["公明党" : self.c + 1])
+                        self.db.collection("election").document(self.sDate).setData(["公明党" : self.c + 1])
                     case 4:
-                        self.db.collection("election").document(sDate).setData(["共産党" : self.d + 1])
+                        self.db.collection("election").document(self.sDate).setData(["共産党" : self.d + 1])
+                    case 5:
+                        self.db.collection("election").document(self.sDate).setData(["共産党" : self.e + 1])
+                        
                     default:
                         return
                     }

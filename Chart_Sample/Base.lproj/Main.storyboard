@@ -73,7 +73,7 @@
         <scene sceneID="x1W-wl-odF">
             <objects>
                 <viewController id="ZbP-se-s3W" customClass="PieChartViewController" customModule="Chart_Sample" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0i8-ht-qWf">
+                    <view key="view" tag="-1" contentMode="scaleToFill" id="0i8-ht-qWf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -101,19 +101,27 @@
                                     <action selector="push:" destination="ZbP-se-s3W" eventType="touchUpInside" id="nyT-sq-nFr"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zdf-jr-yV4" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="64" width="375" height="367"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixa-vg-iVA">
-                                <rect key="frame" x="263" y="580" width="46" height="30"/>
+                                <rect key="frame" x="164" y="580" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="共産党"/>
                                 <connections>
                                     <action selector="push:" destination="ZbP-se-s3W" eventType="touchUpInside" id="2p0-zO-bDk"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zdf-jr-yV4" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="64" width="375" height="367"/>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCd-ap-AEq">
+                                <rect key="frame" x="275" y="580" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                                <state key="normal" title="社民党"/>
+                                <connections>
+                                    <action selector="push:" destination="ZbP-se-s3W" eventType="touchUpInside" id="R5a-Cj-4J8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Z7c-nH-NKL"/>
