@@ -14,10 +14,10 @@ class PieChartViewController: DemoBaseViewController {
     @IBOutlet weak var chartView: PieChartView!
     var db : Firestore!
     var a: Double!
-    let b: Double!
-    let c: Double!
-    let d: Double!
-    let e: Double!
+    var b: Double!
+    var c: Double!
+    var d: Double!
+    var e: Double!
     var numAraay = [Double]()
     var date : Date!
     let nameArray = ["自民党","民主党","共産党","公明党","社民党"]
@@ -25,35 +25,46 @@ class PieChartViewController: DemoBaseViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.a = 1
+        self.b = 1
+        self.c = 1
+        self.d = 1
+        self.e = 1
+        let sum = a + b + c + d + e
+        numAraay = [(a/sum)*100,(b/sum)*100,(c/sum)*100,(d/sum)*100,(e/sum)*100]
         date = Date()
         let format = DateFormatter()
         format.dateFormat = "yyyy-MM-dd"
         sDate = format.string(from: date)
         print(sDate)
-         db = Firestore.firestore()
+        db = Firestore.firestore()
         db.collection("election").document(sDate).getDocument { (snap, error) in
             if let error = error{
                 print(error.localizedDescription)
             }else{
-                if let data = snap?.data(){
-                    a = data["自民党"] as! Double
-                    b = data["民主党"] as! Double
-                    c = data["公明党"] as! Double
-                    d = data["共産党"] as! Double
-                    e = data["社民党"] as! Double
-                }else{
-                    a = 1
-                    b = 1
-                    c = 1
-                    d = 1
-                    e = 1
-                }
+//                if let data = snap?.data(){
+//                    self.a = data["自民党"] as! Double
+//                    self.b = data["民主党"] as! Double
+//                    self.c = data["公明党"] as! Double
+//                    self.d = data["共産党"] as! Double
+//                    self.e = data["社民党"] as! Double
+//                    let sum = a + b + c + d + e
+//                    numAraay = [(a/sum)*100,(b/sum)*100,(c/sum)*100,(d/sum)*100,(e/sum)*100]
+//                }else{
+//                    self.a = 1
+//                    self.b = 1
+//                    self.c = 1
+//                    self.d = 1
+//                    self.e = 1
+//                    let sum = a + b + c + d + e
+//                    numAraay = [(a/sum)*100,(b/sum)*100,(c/sum)*100,(d/sum)*100,(e/sum)*100]
+//                }
             }
         }
         
-        let sum = a + b + c + d + e
-        numAraay = [(a/sum)*100,(b/sum)*100,(c/sum)*100,(d/sum)*100,(e/sum)*100]
+        
         
         self.options = [.toggleValues,
                         .toggleXValues,
