@@ -265,40 +265,106 @@ class PieChartViewController: DemoBaseViewController {
                 if let data = snap?.data(){
                     switch sender.tag {
                     case 1:
-                        self.a = self.a + 1
-                        self.db.collection("election").document(self.sDate).updateData(["自民党" : self.a])
-                        self.updateChartData()
+                        if data["自民党"] != nil{
+                            self.a = self.a + 1
+                            self.db.collection("election").document(self.sDate).updateData(["自民党" : self.a])
+                            self.updateChartData()
+                        }else{
+                            self.db.collection("election").document(self.sDate).setData(["自民党" : self.a])
+                            self.updateChartData()
+                        }
                     case 2:
-                        self.b = self.b + 1
-                        self.db.collection("election").document(self.sDate).updateData(["民主党" : self.b])
-                        self.updateChartData()
+                        if data["民主党"] != nil{
+                            self.b = self.b + 1
+                            self.db.collection("election").document(self.sDate).updateData(["民主党" : self.b])
+                            self.updateChartData()
+                        }else{
+                            self.db.collection("election").document(self.sDate).setData(["民主党" : self.b])
+                            self.updateChartData()
+                        }
+                        
                     case 3:
-                        self.c = self.c + 1
-                        self.db.collection("election").document(self.sDate).updateData(["公明党" : self.c])
-                        self.updateChartData()
+                        if data["公明党"] != nil{
+                            self.c = self.c + 1
+                            self.db.collection("election").document(self.sDate).updateData(["公明党" : self.c])
+                            self.updateChartData()
+                        }else{
+                            self.db.collection("election").document(self.sDate).setData(["公明党" : self.c])
+                            self.updateChartData()
+                        }
                     case 4:
-                        self.d = self.d + 1
-                        self.db.collection("election").document(self.sDate).updateData(["共産党" : self.d])
-                        self.updateChartData()
+                        if data["共産党"] != nil{
+                            self.d = self.d + 1
+                            self.db.collection("election").document(self.sDate).updateData(["共産党" : self.d])
+                            self.updateChartData()
+                        }else{
+                            self.db.collection("election").document(self.sDate).setData(["共産党" : self.d])
+                            self.updateChartData()
+                        }
                     case 5:
-                        self.e = self.e + 1
-                        self.db.collection("election").document(self.sDate).updateData(["社民党" : self.e])
-                        self.updateChartData()
+                        if data["共産党"] != nil{
+                            self.e = self.e + 1
+                            self.db.collection("election").document(self.sDate).updateData(["社民党" : self.e])
+                            self.updateChartData()
+                        }else{
+                            self.db.collection("election").document(self.sDate).setData(["社民党" : self.e])
+                            self.updateChartData()
+                        }
                     default:
                         return
                     }
                 }else{
                     switch sender.tag {
                     case 1:
-                        self.db.collection("election").document(self.sDate).setData(["自民党" : self.a + 1])
+                        self.a = self.a + 1
+                        self.db.collection("election").document(self.sDate).setData([
+                            "自民党" : self.a,
+                            "民主党" : self.b,
+                            "公明党" : self.c,
+                            "共産党" : self.d,
+                            "社民党" : self.e
+                            ])
+                        self.updateChartData()
                     case 2:
-                        self.db.collection("election").document(self.sDate).setData(["民主党" : self.b + 1])
+                        self.b = self.b + 1
+                        self.db.collection("election").document(self.sDate).setData([
+                            "自民党" : self.a,
+                            "民主党" : self.b,
+                            "公明党" : self.c,
+                            "共産党" : self.d,
+                            "社民党" : self.e
+                            ])
+                        self.updateChartData()
                     case 3:
-                        self.db.collection("election").document(self.sDate).setData(["公明党" : self.c + 1])
+                        self.c = self.c + 1
+                        self.db.collection("election").document(self.sDate).setData([
+                            "自民党" : self.a,
+                            "民主党" : self.b,
+                            "公明党" : self.c,
+                            "共産党" : self.d,
+                            "社民党" : self.e
+                            ])
+                        self.updateChartData()
                     case 4:
-                        self.db.collection("election").document(self.sDate).setData(["共産党" : self.d + 1])
+                        self.d = self.d + 1
+                        self.db.collection("election").document(self.sDate).setData([
+                            "自民党" : self.a,
+                            "民主党" : self.b,
+                            "公明党" : self.c,
+                            "共産党" : self.d,
+                            "社民党" : self.e
+                            ])
+                        self.updateChartData()
                     case 5:
-                        self.db.collection("election").document(self.sDate).setData(["共産党" : self.e + 1])
+                        self.e = self.e + 1
+                        self.db.collection("election").document(self.sDate).setData([
+                            "自民党" : self.a,
+                            "民主党" : self.b,
+                            "公明党" : self.c,
+                            "共産党" : self.d,
+                            "社民党" : self.e
+                            ])
+                        self.updateChartData()
                         
                     default:
                         return
